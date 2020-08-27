@@ -122,11 +122,6 @@ rule libtorrent_linking ( properties * )
 		ECHO "WARNING: you probably want to specify libtorrent-link=static rather than link=static" ;
 	}
 
-	if <boost-link>static in $(properties) && <target-os>linux in $(properties)
-	{
-		ECHO "WARNING: you cannot link statically against boost-python on linux, because it links against pthread statically in that case, which is not allowed" ;
-	}
-
 	local boost_python_lib ;
 
 	for local prop in $(properties)
