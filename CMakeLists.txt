@@ -206,7 +206,6 @@ set(libtorrent_aux_include_files
 	heterogeneous_queue
 	http_connection
 	http_parser
-	http_seed_connection
 	invariant_check
 	instantiate_connection
 	io
@@ -328,7 +327,6 @@ set(sources
 	peer_connection
 	bt_peer_connection
 	web_peer_connection
-	http_seed_connection
 	peer_connection_handle
 	instantiate_connection
 	merkle

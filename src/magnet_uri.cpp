@@ -122,8 +122,6 @@ namespace libtorrent {
 
 		for (auto const& s : info.web_seeds())
 		{
-			if (s.type != web_seed_entry::url_seed) continue;
-
 			ret += "&ws=";
 			ret += escape_string(s.url);
 		}

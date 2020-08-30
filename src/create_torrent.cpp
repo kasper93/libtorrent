@@ -459,12 +459,7 @@ namespace {
 			add_tracker(t.url, t.tier);
 
 		for (auto const& s : ti.web_seeds())
-		{
-			if (s.type == web_seed_entry::url_seed)
-				add_url_seed(s.url);
-			else if (s.type == web_seed_entry::http_seed)
-				add_http_seed(s.url);
-		}
+			add_url_seed(s.url);
 
 		if (make_v1)
 		{
@@ -613,22 +608,6 @@ namespace {
 			{
 				entry& list = dict["url-list"];
 				for (auto const& url : m_url_seeds)
-				{
-					list.list().emplace_back(url);
-				}
-			}
-		}
-
-		if (!m_http_seeds.empty())
-		{
-			if (m_http_seeds.size() == 1)
-			{
-				dict["httpseeds"] = m_http_seeds.front();
-			}
-			else
-			{
-				entry& list = dict["httpseeds"];
-				for (auto const& url : m_http_seeds)
 				{
 					list.list().emplace_back(url);
 				}
@@ -958,10 +937,9 @@ namespace {
 		m_url_seeds.emplace_back(url);
 	}
 
-	void create_torrent::add_http_seed(string_view url)
-	{
-		m_http_seeds.emplace_back(url);
-	}
+#if TORRENT_ABI_VERSION < 4
+	void create_torrent::add_http_seed(string_view) {}
+#endif
 
 	void create_torrent::set_comment(char const* str)
 	{
